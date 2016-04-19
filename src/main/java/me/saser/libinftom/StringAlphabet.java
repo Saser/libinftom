@@ -4,17 +4,17 @@ import com.google.common.collect.ImmutableSet;
 
 import java.util.Set;
 
-public class StringLanguage implements Language {
+public class StringAlphabet implements Alphabet {
 
     private final Set<String> symbolSet;
 
     /**
-     * Create a language from the given <b>comma separated string</b> of symbols. Be sure to not include commas in the
+     * Create a alphabet from the given <b>comma separated string</b> of symbols. Be sure to not include commas in the
      * symbols themselves.
      *
      * @param symbols a comma separated string of symbols
      */
-    public StringLanguage(String symbols) {
+    public StringAlphabet(String symbols) {
         this.symbolSet = ImmutableSet.copyOf(symbols.split(","));
     }
 
@@ -30,7 +30,8 @@ public class StringLanguage implements Language {
 
     @Override
     public Boolean isValidWord(String word) {
-        // We define languages to allow the empty word.
+        // We define that the empty word is valid, since that is how the set of words of an alphabet is usually
+        // defined.
         if (word.equals("")) {
             return true;
         }
