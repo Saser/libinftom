@@ -28,4 +28,11 @@ public class LanguageTest {
         assertEquals("The returned set should contain 'a', 'b', 'cde', 'hello world'", expectedSymbols, language.getSymbols());
     }
 
+    @Test
+    public void isValidSymbol() throws Exception {
+        assertTrue("'a' is a valid symbol", language.isValidSymbol("a"));
+        assertTrue("'hello world' is a valid symbol", language.isValidSymbol("hello world"));
+        assertFalse("'hello, world' is not a valid symbol (contains a comma)", language.isValidSymbol("hello, world"));
+    }
+
 }
