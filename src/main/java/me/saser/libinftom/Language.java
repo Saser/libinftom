@@ -27,5 +27,4 @@ public interface Language {
      * @return true if all symbols are valid
      */
     Boolean isValidWord(String word);
-
 }
