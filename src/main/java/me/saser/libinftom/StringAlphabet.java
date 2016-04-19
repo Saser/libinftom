@@ -38,4 +38,15 @@ public class StringAlphabet implements Alphabet {
 
         return this.symbolSet.containsAll(ImmutableSet.copyOf(word.split(",")));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        StringAlphabet that = (StringAlphabet) o;
+
+        return symbolSet.equals(that.symbolSet);
+
+    }
 }
