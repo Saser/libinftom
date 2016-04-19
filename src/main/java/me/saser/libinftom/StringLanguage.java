@@ -24,11 +24,16 @@ public class StringLanguage implements Language {
 
     @Override
     public Boolean isValidSymbol(String symbol) {
-        return null;
+        return this.symbolSet.contains(symbol);
     }
 
     @Override
     public Boolean isValidWord(String word) {
-        return null;
+        // We define languages to allow the empty word.
+        if (word.equals("")) {
+            return true;
+        }
+
+        return this.symbolSet.containsAll(ImmutableSet.copyOf(word.split(",")));
     }
 }
