@@ -13,7 +13,7 @@ public class LanguageTest {
     private static Language language;
 
     @BeforeClass
-    public void setUp() throws Exception {
+    public static void setUp() throws Exception {
         language = new StringLanguage("a,b,cde,hello world");
     }
 
