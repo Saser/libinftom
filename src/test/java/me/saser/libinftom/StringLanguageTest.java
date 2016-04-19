@@ -1,6 +1,6 @@
 package me.saser.libinftom;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.HashSet;
@@ -10,11 +10,11 @@ import static org.junit.Assert.*;
 
 public class StringLanguageTest {
 
-    private Language language;
+    private static Language language;
 
-    @Before
+    @BeforeClass
     public void setUp() throws Exception {
-        this.language = new StringLanguage("a,b,cde,hello world");
+        language = new StringLanguage("a,b,cde,hello world");
     }
 
     @Test
@@ -25,7 +25,7 @@ public class StringLanguageTest {
         expectedSymbols.add("cde");
         expectedSymbols.add("hello world");
 
-        assertEquals("The returned set should contain 'a', 'b', 'cde', 'hello world'", expectedSymbols, this.language.getSymbols());
+        assertEquals("The returned set should contain 'a', 'b', 'cde', 'hello world'", expectedSymbols, language.getSymbols());
     }
 
 }
