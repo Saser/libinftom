@@ -21,4 +21,14 @@ public class StringLanguage implements Language {
     public Set<String> getSymbols() {
         return this.symbolSet;
     }
+
+    @Override
+    public Boolean isValidSymbol(String symbol) {
+        return null;
+    }
+
+    @Override
+    public Boolean isValidWord(String word) {
+        return null;
+    }
 }
