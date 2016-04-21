@@ -4,6 +4,22 @@ import me.saser.libinftom.Alphabet;
 
 import java.util.Set;
 
+/**
+ * Represents the definition of a deterministic finite automaton, based on the 5-tuple form of definition. The following
+ * information is available from implementations of this interface:
+ *
+ * <ul>
+ *     <li>The set of all possible states</li>
+ *     <li>The alphabet that the DFA is defined for</li>
+ *     <li>The "delta" function (also known as transition function) that describes how this automaton moves when
+ *     reading symbols in the alphabet</li>
+ *     <li>The initial state</li>
+ *     <li>The set of final states (also known as accepting states)</li>
+ * </ul>
+ *
+ * As such, implementations of this class do not simulate an actual state machine -- it only creates models for them,
+ * that actual mutable state machines can be constructed from.
+ */
 public interface DFA {
 
     /**
@@ -12,14 +28,6 @@ public interface DFA {
      * @return a Alphabet instance containing the alphabet
      */
     Alphabet getAlphabet();
-
-    /**
-     * Gets the current state that this DFA is in. If a non-null value is return, the returned String is guaranteed to
-     * be an element in the set returned by <code>getStates()</code>.
-     *
-     * @return a String representation of the current state, or <code>null</code> if in a dead state
-     */
-    String getState();
 
     /**
      * Gets a Set of all possible states for this DFA. This set contains all states that the DFA was created with,
@@ -44,25 +52,4 @@ public interface DFA {
      * @return a Set of all final states
      */
     Set<String> getFinalStates();
-
-    /**
-     * Like <code>consume(String)</code>, but does not change the current state.
-     *
-     * @param symbol a String containing a symbol from this DFAs language
-     * @return a String representation of the state this DFA would end up in, or <code>null</code> if this DFA would end
-     * up in a dead state
-     * @throws IllegalArgumentException if <code>symbol</code> is not a valid symbol in the language of this DFA
-     */
-    String peek(String symbol);
-
-    /**
-     * Return a String representation of the state this DFA ends up in after reading the given symbol. This method
-     * changes the current state of this DFA.
-     *
-     * @param symbol a String containing a symbol from this DFAs language
-     * @return a String representation of the new current state, or <code>null</code> if this DFA would end up in a dead
-     * state
-     * @throws IllegalArgumentException if <code>symbol</code> is not a valid symbol in the language of this DFA
-     */
-    String consume(String symbol);
 }
