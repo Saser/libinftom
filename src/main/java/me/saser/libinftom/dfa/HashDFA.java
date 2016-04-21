@@ -70,7 +70,7 @@ public class HashDFA implements DFA {
     public static DFA fromJSON(String json) {
         Gson gson = new Gson();
         DFAData data = gson.fromJson(json, DFAData.class);
-        return new HashDFA(data.states, data.alphabet, data.delta, data.initialState, data.finalState);
+        return new HashDFA(data.states, data.alphabet, data.delta, data.initialState, data.finalStates);
     }
 
     @Override
