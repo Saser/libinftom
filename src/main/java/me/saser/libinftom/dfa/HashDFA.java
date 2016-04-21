@@ -100,11 +100,11 @@ public class HashDFA implements DFA {
 
     private static class DFAData {
 
-        public Set<String> states;
-        public Set<String> alphabet;
-        public Map<String, Map<String, String>> delta;
-        public String initialState;
-        public Set<String> finalStates;
+        private Set<String> states;
+        private Set<String> alphabet;
+        private Map<String, Map<String, String>> delta;
+        private String initialState;
+        private Set<String> finalStates;
 
     }
 }
