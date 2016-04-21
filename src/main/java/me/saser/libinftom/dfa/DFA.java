@@ -25,7 +25,7 @@ public interface DFA {
     /**
      * Returns the alphabet as an Alphabet that this DFA is defined for.
      *
-     * @return a Alphabet instance containing the alphabet
+     * @return an Alphabet instance containing the alphabet
      */
     Alphabet getAlphabet();
 
