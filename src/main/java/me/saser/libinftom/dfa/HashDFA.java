@@ -98,6 +98,11 @@ public class HashDFA implements DFA {
         return null;
     }
 
+    @Override
+    public String nextState(String state, String symbol) {
+        return null;
+    }
+
     private static class DFAData {
 
         private Set<String> states;
