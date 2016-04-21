@@ -7,16 +7,16 @@ import java.util.Set;
 /**
  * Represents the definition of a deterministic finite automaton, based on the 5-tuple form of definition. The following
  * information is available from implementations of this interface:
- *
+ * <p>
  * <ul>
- *     <li>The set of all possible states</li>
- *     <li>The alphabet that the DFA is defined for</li>
- *     <li>The "delta" function (also known as transition function) that describes how this automaton moves when
- *     reading symbols in the alphabet</li>
- *     <li>The initial state</li>
- *     <li>The set of final states (also known as accepting states)</li>
+ * <li>The set of all possible states</li>
+ * <li>The alphabet that the DFA is defined for</li>
+ * <li>The "delta" function (also known as transition function) that describes how this automaton moves when
+ * reading symbols in the alphabet</li>
+ * <li>The initial state</li>
+ * <li>The set of final states (also known as accepting states)</li>
  * </ul>
- *
+ * <p>
  * As such, implementations of this class do not simulate an actual state machine -- it only creates models for them,
  * that actual mutable state machines can be constructed from.
  */
@@ -55,6 +55,7 @@ public interface DFA {
 
     /**
      * Returns an instance of {@link DFARunner} that can simulate traversals through this DFA.
+     *
      * @return an instance of {@link DFARunner}
      */
     DFARunner runner();

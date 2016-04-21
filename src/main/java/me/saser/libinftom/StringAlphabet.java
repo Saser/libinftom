@@ -23,6 +23,7 @@ public class StringAlphabet implements Alphabet {
     /**
      * Create an alphabet from the given iterable of symbols. Any duplicates will be removed. Empty symbols are not
      * allowed, and will result in an IllegalArgumentException.
+     *
      * @param symbols an Iterable of Strings to create the alphabet from
      * @throws IllegalArgumentException if any of the symbols is the empty string
      */
