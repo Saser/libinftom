@@ -75,22 +75,22 @@ public class HashDFA implements DFA {
 
     @Override
     public Set<String> getStates() {
-        return null;
+        return this.states;
     }
 
     @Override
     public Alphabet getAlphabet() {
-        return null;
+        return this.alphabet;
     }
 
     @Override
     public String getInitialState() {
-        return null;
+        return this.initialState;
     }
 
     @Override
     public Set<String> getFinalStates() {
-        return null;
+        return this.finalStates;
     }
 
     @Override
