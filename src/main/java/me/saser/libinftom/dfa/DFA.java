@@ -52,4 +52,10 @@ public interface DFA {
      * @return a Set of all final states
      */
     Set<String> getFinalStates();
+
+    /**
+     * Returns an instance of {@link DFARunner} that can simulate traversals through this DFA.
+     * @return an instance of {@link DFARunner}
+     */
+    DFARunner runner();
 }
