@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Set;
 
@@ -63,7 +64,7 @@ public class DFATest {
     }
 
     private static File getJSONResource(String fileName) {
-        String filePath = DFATest.class.getClass().getResource(String.format("dfa/%s", fileName)).getFile();
+        String filePath = DFATest.class.getClassLoader().getResource(String.format("dfa/%s", fileName)).getFile();
         return new File(filePath);
     }
 }
