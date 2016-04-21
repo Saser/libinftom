@@ -2,6 +2,7 @@ package me.saser.libinftom;
 
 import com.google.common.collect.ImmutableSet;
 
+import java.util.List;
 import java.util.Set;
 
 public class StringAlphabet implements Alphabet {
@@ -16,6 +17,10 @@ public class StringAlphabet implements Alphabet {
      */
     public StringAlphabet(String symbols) {
         this.symbolSet = ImmutableSet.copyOf(symbols.split(","));
+    }
+
+    public StringAlphabet(List<String> symbols) {
+        this.symbolSet = ImmutableSet.copyOf(symbols);
     }
 
     @Override
