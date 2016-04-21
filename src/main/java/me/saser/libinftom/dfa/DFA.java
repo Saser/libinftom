@@ -59,4 +59,14 @@ public interface DFA {
      * @return an instance of {@link DFARunner}
      */
     DFARunner runner();
+
+    /**
+     * Returns the state the DFA would transition to if currently in <code>state</code> and reading <code>symbol</code>.
+     *
+     * @param state  the state to transition from, should be an element in the set returned by <code>getStates()</code>
+     * @param symbol the symbol to read, should be a symbol in the {@link Alphabet} returned by <code>getAlphabet()</code>
+     * @return a String representation of the next state; null if in a dead state
+     * @throws IllegalArgumentException if the state is invalid; if the symbol is invalid
+     */
+    String nextState(String state, String symbol);
 }
