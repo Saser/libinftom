@@ -100,7 +100,15 @@ public class HashDFA implements DFA {
 
     @Override
     public String nextState(String state, String symbol) {
-        return null;
+        if (this.states.contains(state) == false) {
+            throw new IllegalArgumentException("Trying to transition from invalid state");
+        }
+
+        if (this.alphabet.isValidSymbol(symbol) == false) {
+            throw new IllegalArgumentException("Trying to transition using an invalid symbol");
+        }
+
+        return this.delta.get(state).get(symbol);
     }
 
     private static class DFAData {
