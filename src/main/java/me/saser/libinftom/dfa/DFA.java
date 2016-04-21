@@ -23,19 +23,19 @@ import java.util.Set;
 public interface DFA {
 
     /**
-     * Returns the alphabet as an Alphabet that this DFA is defined for.
-     *
-     * @return an Alphabet instance containing the alphabet
-     */
-    Alphabet getAlphabet();
-
-    /**
      * Gets a Set of all possible states for this DFA. This set contains all states that the DFA was created with,
      * and so could possibly contain unreachable states.
      *
      * @return a Set of String representations of all possible states
      */
     Set<String> getStates();
+
+    /**
+     * Returns the alphabet as an Alphabet that this DFA is defined for.
+     *
+     * @return an Alphabet instance containing the alphabet
+     */
+    Alphabet getAlphabet();
 
     /**
      * Gets a String representation of this DFAs initial state. The returned String is guaranteed to be an element
