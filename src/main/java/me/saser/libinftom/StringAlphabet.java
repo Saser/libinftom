@@ -1,8 +1,8 @@
 package me.saser.libinftom;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
-import java.util.List;
 import java.util.Set;
 
 public class StringAlphabet implements Alphabet {
@@ -16,10 +16,16 @@ public class StringAlphabet implements Alphabet {
      * @param symbols a comma separated string of symbols
      */
     public StringAlphabet(String symbols) {
-        this.symbolSet = ImmutableSet.copyOf(symbols.split(","));
+        this(ImmutableList.copyOf(symbols.split(",")));
     }
 
-    public StringAlphabet(List<String> symbols) {
+    public StringAlphabet(Iterable<String> symbols) {
+        for (String sym : symbols) {
+            if (sym.equals("")) {
+                throw new IllegalArgumentException("Having an empty symbol is disallowed");
+            }
+        }
+
         this.symbolSet = ImmutableSet.copyOf(symbols);
     }
 
