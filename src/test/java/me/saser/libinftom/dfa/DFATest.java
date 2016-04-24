@@ -16,12 +16,11 @@ import static org.junit.Assert.*;
 public class DFATest {
 
     private static DFA dfa;
+    private static final DFATestUtils utils = new DFATestUtils();
 
     @BeforeClass
     public static void setUp() throws Exception {
-        File jsonFile = getJSONResource("dfa/valid/begin_with_0_end_with_1.json");
-        String json = FileUtils.readFileToString(jsonFile, Charset.defaultCharset());
-        dfa = ImmutableDFA.fromJSON(json);
+        dfa = utils.parseJSONFile("dfa/valid/begin_with_0_end_with_1.json");
     }
 
     @Test
