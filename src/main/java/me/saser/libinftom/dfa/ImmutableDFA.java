@@ -54,7 +54,7 @@ public class ImmutableDFA implements DFA {
 
             for (String resultingState : inputState.getValue().values()) {
                 if (resultingState != null && this.states.contains(resultingState) == false) {
-                    throw new IllegalArgumentException("Resulting state of transition is invalid");
+                    throw new IllegalArgumentException("invalid target state");
                 }
             }
         }
@@ -63,13 +63,13 @@ public class ImmutableDFA implements DFA {
 
         // Verify that the initial state is a valid state.
         if (this.states.contains(initialState) == false) {
-            throw new IllegalArgumentException("Initial state is not a valid state");
+            throw new IllegalArgumentException("invalid initial state");
         }
         this.initialState = initialState;
 
         // Verify that all elements in the set of final states are valid states.
         if (this.states.containsAll(finalStates) == false) {
-            throw new IllegalArgumentException("The set of final states contains invalid state(s)");
+            throw new IllegalArgumentException("invalid final state");
         }
         this.finalStates = ImmutableSet.copyOf(finalStates);
     }
