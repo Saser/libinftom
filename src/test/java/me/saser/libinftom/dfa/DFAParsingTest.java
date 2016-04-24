@@ -54,6 +54,17 @@ public class DFAParsingTest {
         }
     }
 
+    @Test
+    public void invalidTargetStateInTransition() throws Exception {
+        try {
+            this.parseJSONFile("dfa/invalid/invalid_target_state_in_delta.json");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"invalid target state\"", e.getMessage().contains("invalid target state"));
+        }
+    }
+
     private DFA parseJSONFile(String fileName) throws Exception {
         String filePath = getClass().getClassLoader().getResource(fileName).getFile();
         File jsonFile = new File(filePath);
