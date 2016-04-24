@@ -9,6 +9,14 @@ import me.saser.libinftom.StringAlphabet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * A class representing a DFA, which is defined at creation time and thereafter never changed, thus being immutable.
+ *
+ * <p>
+ * Instances of this class are created by calling the <code>fromJSON(String)</code> class method, which parses the given
+ * String as a JSON representation of a DFA. See the documentation for <code>fromJSON(String)</code> method for more
+ * details regarding the accepted format of the JSON representation.
+ */
 public class ImmutableDFA implements DFA {
 
     private final Set<String> states;
