@@ -19,7 +19,7 @@ public class DFATest {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        File jsonFile = getJSONResource("begin_with_0_end_with_1.json");
+        File jsonFile = getJSONResource("valid/begin_with_0_end_with_1.json");
         String json = FileUtils.readFileToString(jsonFile, Charset.defaultCharset());
         dfa = ImmutableDFA.fromJSON(json);
     }
