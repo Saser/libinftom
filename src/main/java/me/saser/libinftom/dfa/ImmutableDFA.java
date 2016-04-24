@@ -40,7 +40,7 @@ public class ImmutableDFA implements DFA {
         // 2. For each state, it should be defined for exactly the symbols in the alphabet.
         // 3. For each symbol, the resulting state should be in this.states or null.
         if (delta.keySet().equals(this.states) == false) {
-            throw new IllegalArgumentException("delta not defined for exactly the given states");
+            throw new IllegalArgumentException("delta not defined for exactly all states");
         }
 
         for (Map.Entry<String, Map<String, String>> inputState : delta.entrySet()) {
