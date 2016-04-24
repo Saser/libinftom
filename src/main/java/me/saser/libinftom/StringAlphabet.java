@@ -1,5 +1,6 @@
 package me.saser.libinftom;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
 import java.util.Set;
@@ -13,9 +14,27 @@ public class StringAlphabet implements Alphabet {
      * symbols themselves.
      *
      * @param symbols a comma separated string of symbols
+     * @throws IllegalArgumentException if any of the symbols is the empty string
      */
     public StringAlphabet(String symbols) {
-        this.symbolSet = ImmutableSet.copyOf(symbols.split(","));
+        this(ImmutableList.copyOf(symbols.split(",")));
+    }
+
+    /**
+     * Create an alphabet from the given iterable of symbols. Any duplicates will be removed. Empty symbols are not
+     * allowed, and will result in an IllegalArgumentException.
+     *
+     * @param symbols an Iterable of Strings to create the alphabet from
+     * @throws IllegalArgumentException if any of the symbols is the empty string
+     */
+    public StringAlphabet(Iterable<String> symbols) {
+        for (String sym : symbols) {
+            if (sym.equals("")) {
+                throw new IllegalArgumentException("Having an empty symbol is disallowed");
+            }
+        }
+
+        this.symbolSet = ImmutableSet.copyOf(symbols);
     }
 
     @Override

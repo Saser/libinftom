@@ -49,4 +49,40 @@ public class AlphabetTest {
         assertFalse("'a,cde,hello world,q', a word with a few valid symbols and one invalid symbol, is an invalid word", alphabet.isValidWord("a,cde,hello world,q"));
         assertFalse("'q,q,q,derp,sc2', a word with a few invalid symbols, is an invalid word", alphabet.isValidWord("q,q,q,derp,sc2"));
     }
+
+    @Test
+    public void disallowEmptySymbols() throws Exception {
+        boolean thrown = false;
+        String message = "";
+
+        try {
+            new StringAlphabet("a,b,c,,e");
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+            message = e.getMessage();
+        }
+
+        assertTrue("An IllegalArgumentException should have been thrown", thrown);
+        assertTrue("The exception should contain the string \"empty symbol\"", message.contains("empty symbol"));
+
+        try {
+            new StringAlphabet("a,b,c,e,");
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+            message = e.getMessage();
+        }
+
+        assertTrue("An IllegalArgumentException should have been thrown", thrown);
+        assertTrue("The exception should contain the string \"empty symbol\"", message.contains("empty symbol"));
+
+        try {
+            new StringAlphabet(",a,b,c,e");
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+            message = e.getMessage();
+        }
+
+        assertTrue("An IllegalArgumentException should have been thrown", thrown);
+        assertTrue("The exception should contain the string \"empty symbol\"", message.contains("empty symbol"));
+    }
 }
