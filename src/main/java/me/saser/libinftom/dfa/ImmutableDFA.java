@@ -180,7 +180,7 @@ public class ImmutableDFA implements DFA {
         }
 
         if (this.states.contains(state) == false) {
-            throw new IllegalArgumentException("Trying to transition from invalid state");
+            throw new IllegalArgumentException("Trying to transition from invalid starting state");
         }
 
         if (this.alphabet.isValidSymbol(symbol) == false) {
