@@ -19,7 +19,7 @@ public class DFATest {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        File jsonFile = getJSONResource("valid/begin_with_0_end_with_1.json");
+        File jsonFile = getJSONResource("dfa/valid/begin_with_0_end_with_1.json");
         String json = FileUtils.readFileToString(jsonFile, Charset.defaultCharset());
         dfa = ImmutableDFA.fromJSON(json);
     }
@@ -63,7 +63,7 @@ public class DFATest {
     }
 
     private static File getJSONResource(String fileName) {
-        String filePath = DFATest.class.getClassLoader().getResource(String.format("dfa/%s", fileName)).getFile();
+        String filePath = DFATest.class.getClassLoader().getResource(fileName).getFile();
         return new File(filePath);
     }
 }
