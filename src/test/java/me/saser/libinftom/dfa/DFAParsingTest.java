@@ -24,7 +24,7 @@ public class DFAParsingTest {
     @Test
     public void oneExtraSymbolInDelta() throws Exception {
         try {
-            this.parseJSONFile("dfa/invalid/extra_symbol_in_delta_q0.json");
+            this.parseJSONFile("dfa/invalid/one_extra_symbol_in_delta_q0.json");
 
             fail("An exception should have been thrown");
         } catch (IllegalArgumentException e) {
