@@ -53,42 +53,29 @@ public class AlphabetTest {
 
     @Test
     public void disallowEmptySymbols() throws Exception {
-        boolean thrown = false;
-        String message = "";
-
         try {
             new StringAlphabet("a,b,c,,e");
+
+            fail("An IllegalArgumentException should have been thrown");
         } catch (IllegalArgumentException e) {
-            thrown = true;
-            message = e.getMessage();
+            assertTrue("The exception should contain the string \"empty symbol\"", e.getMessage().contains("empty symbol"));
         }
 
-        assertTrue("An IllegalArgumentException should have been thrown", thrown);
-        assertTrue("The exception should contain the string \"empty symbol\"", message.contains("empty symbol"));
-
-        thrown = false;
-        message = "";
         try {
             new StringAlphabet("a,b,c,e,");
+
+            fail("An IllegalArgumentException should have been thrown");
         } catch (IllegalArgumentException e) {
-            thrown = true;
-            message = e.getMessage();
+            assertTrue("The exception should contain the string \"empty symbol\"", e.getMessage().contains("empty symbol"));
         }
 
-        assertTrue("An IllegalArgumentException should have been thrown", thrown);
-        assertTrue("The exception should contain the string \"empty symbol\"", message.contains("empty symbol"));
-
-        thrown = false;
-        message = "";
         try {
             new StringAlphabet(",a,b,c,e");
-        } catch (IllegalArgumentException e) {
-            thrown = true;
-            message = e.getMessage();
-        }
 
-        assertTrue("An IllegalArgumentException should have been thrown", thrown);
-        assertTrue("The exception should contain the string \"empty symbol\"", message.contains("empty symbol"));
+            fail("An IllegalArgumentException should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("The exception should contain the string \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
     }
 
     @Test
