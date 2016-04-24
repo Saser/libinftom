@@ -7,7 +7,6 @@ import java.util.Set;
 /**
  * Represents the definition of a deterministic finite automaton, based on the 5-tuple form of definition. The following
  * information is available from implementations of this interface:
- * <p>
  * <ul>
  * <li>The set of all possible states</li>
  * <li>The alphabet that the DFA is defined for</li>

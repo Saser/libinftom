@@ -12,7 +12,6 @@ import java.util.Set;
 /**
  * A class representing a DFA, which is defined at creation time and thereafter never changed, thus being immutable.
  * <p>
- * <p>
  * Instances of this class are created by calling the <code>fromJSON(String)</code> class method, which parses the given
  * String as a JSON representation of a DFA. See the documentation for <code>fromJSON(String)</code> method for more
  * details regarding the accepted format of the JSON representation.
@@ -87,19 +86,19 @@ public class ImmutableDFA implements DFA {
      *     <li><code>states</code>: a JSON list of possible states, given as strings. Duplicate states will be silently
      *     ignored.</li>
      *     <li><code>delta</code>: a JSON object representing the transition function of the DFA. Each key is a state,
-     *     and the value for each key is a JSON object with the following format:</li>
+     *     and the value for each key is a JSON object with the following format:
      *     <ul>
      *         <li>a key for every symbol in the alphabet</li>
      *         <li>for each key, the value is a string containing the state it should transition to; or null, if
      *         transitioning to the dead state</li>
-     *     </ul>
+     *     </ul></li>
      *     <li><code>initialState</code>: a string with the initial state.</li>
      *     <li><code>finalStates</code>: a JSON list of final states, given as strings. Duplicate states will be
      *     silently ignored.</li>
      * </ul>
      *
      * An example of a valid JSON representation is given below.
-     *
+     * <p>
      * <code>
      *    {
      *       "alphabet": [
