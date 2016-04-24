@@ -8,7 +8,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
-import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Set;
 
@@ -22,7 +21,7 @@ public class DFATest {
     public static void setUp() throws Exception {
         File jsonFile = getJSONResource("begin_with_0_end_with_1.json");
         String json = FileUtils.readFileToString(jsonFile, Charset.defaultCharset());
-        dfa = HashDFA.fromJSON(json);
+        dfa = ImmutableDFA.fromJSON(json);
     }
 
     @Test

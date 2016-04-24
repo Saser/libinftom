@@ -9,7 +9,7 @@ import me.saser.libinftom.StringAlphabet;
 import java.util.Map;
 import java.util.Set;
 
-public class HashDFA implements DFA {
+public class ImmutableDFA implements DFA {
 
     private final Set<String> states;
     private final Alphabet alphabet;
@@ -17,7 +17,7 @@ public class HashDFA implements DFA {
     private final String initialState;
     private final Set<String> finalStates;
 
-    private HashDFA(Set<String> states, Set<String> alphabet, Map<String, Map<String, String>> delta, String initialState, Set<String> finalStates) {
+    private ImmutableDFA(Set<String> states, Set<String> alphabet, Map<String, Map<String, String>> delta, String initialState, Set<String> finalStates) {
         // Disallow empty states in set of states.
         for (String state : states) {
             if (state.equals("")) {
@@ -70,7 +70,7 @@ public class HashDFA implements DFA {
     public static DFA fromJSON(String json) {
         Gson gson = new Gson();
         DFAData data = gson.fromJson(json, DFAData.class);
-        return new HashDFA(data.states, data.alphabet, data.delta, data.initialState, data.finalStates);
+        return new ImmutableDFA(data.states, data.alphabet, data.delta, data.initialState, data.finalStates);
     }
 
     @Override
