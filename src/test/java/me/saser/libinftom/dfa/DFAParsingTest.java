@@ -32,6 +32,28 @@ public class DFAParsingTest {
         }
     }
 
+    @Test
+    public void oneMissingStateInDelta() throws Exception {
+        try {
+            this.parseJSONFile("dfa/invalid/one_missing_state_in_delta.json");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"exactly all states\"", e.getMessage().contains("exactly all states"));
+        }
+    }
+
+    @Test
+    public void oneExtraStateInDelta() throws Exception {
+        try {
+            this.parseJSONFile("dfa/invalid/one_extra_state_in_delta.json");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"exactly all states\"", e.getMessage().contains("exactly all states"));
+        }
+    }
+
     private DFA parseJSONFile(String fileName) throws Exception {
         String filePath = getClass().getClassLoader().getResource(fileName).getFile();
         File jsonFile = new File(filePath);
