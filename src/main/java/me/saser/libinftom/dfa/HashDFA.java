@@ -11,11 +11,11 @@ import java.util.Set;
 
 public class HashDFA implements DFA {
 
-    private Set<String> states;
-    private Alphabet alphabet;
-    private Map<String, Map<String, String>> delta;
-    private String initialState;
-    private Set<String> finalStates;
+    private final Set<String> states;
+    private final Alphabet alphabet;
+    private final Map<String, Map<String, String>> delta;
+    private final String initialState;
+    private final Set<String> finalStates;
 
     private HashDFA(Set<String> states, Set<String> alphabet, Map<String, Map<String, String>> delta, String initialState, Set<String> finalStates) {
         // Disallow empty states in set of states.
