@@ -11,7 +11,7 @@ import java.util.Set;
 
 /**
  * A class representing a DFA, which is defined at creation time and thereafter never changed, thus being immutable.
- *
+ * <p>
  * <p>
  * Instances of this class are created by calling the <code>fromJSON(String)</code> class method, which parses the given
  * String as a JSON representation of a DFA. See the documentation for <code>fromJSON(String)</code> method for more
@@ -75,6 +75,67 @@ public class ImmutableDFA implements DFA {
         this.finalStates = ImmutableSet.copyOf(finalStates);
     }
 
+    /**
+     * Parses the given String as a JSON representation of a DFA and returns a new instance of <code>ImmutableDFA</code>
+     * upon success, or throws <code>IllegalArgumentException</code>s upon parsing failure.
+     *
+     * The accepted JSON format is a single JSON object with the following fields:
+     *
+     * <ul>
+     *     <li><code>alphabet</code>: a JSON list of symbols in the alphabet, given as strings. Duplicate symbols will
+     *     be silently ignored.</li>
+     *     <li><code>states</code>: a JSON list of possible states, given as strings. Duplicate states will be silently
+     *     ignored.</li>
+     *     <li><code>delta</code>: a JSON object representing the transition function of the DFA. Each key is a state,
+     *     and the value for each key is a JSON object with the following format:</li>
+     *     <ul>
+     *         <li>a key for every symbol in the alphabet</li>
+     *         <li>for each key, the value is a string containing the state it should transition to; or null, if
+     *         transitioning to the dead state</li>
+     *     </ul>
+     *     <li><code>initialState</code>: a string with the initial state.</li>
+     *     <li><code>finalStates</code>: a JSON list of final states, given as strings. Duplicate states will be
+     *     silently ignored.</li>
+     * </ul>
+     *
+     * An example of a valid JSON representation is given below.
+     *
+     * <code>
+     *    {
+     *       "alphabet": [
+     *           "0",
+     *           "1"
+     *       ],
+     *       "states": [
+     *           "q0",
+     *           "q1",
+     *           "q2"
+     *       ],
+     *       "delta": {
+     *           "q0": {
+     *               "0": "q1",
+     *               "1": null
+     *           },
+     *           "q1": {
+     *               "0": "q1",
+     *               "1": "q2"
+     *           },
+     *           "q2": {
+     *               "0": "q1",
+     *               "1": "q2"
+     *           }
+     *       },
+     *       "initialState": "q0",
+     *       "finalStates": [
+     *           "q2"
+     *       ]
+     *   }
+     * </code>
+     *
+     * @param json a JSON representation of the DFA, according to the above format
+     * @return an instance of <code>ImmutableDFA</code>
+     * @throws IllegalArgumentException if the parsing fails in any way or not enough information is provided
+     */
     public static DFA fromJSON(String json) {
         Gson gson = new Gson();
         DFAData data = gson.fromJson(json, DFAData.class);
