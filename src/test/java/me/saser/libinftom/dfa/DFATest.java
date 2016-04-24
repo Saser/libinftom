@@ -77,6 +77,18 @@ public class DFATest {
     }
 
     @Test
+    public void invalidStateInTransition() throws Exception {
+        try {
+            // "q3" is an invalid state
+            dfa.nextState("q3", "0");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"invalid starting state\"", e.getMessage().contains("invalid starting state"));
+        }
+    }
+
+    @Test
     public void getInitialState() throws Exception {
         assertEquals("The initial state should be \"q0\"", "q0", dfa.getInitialState());
     }
