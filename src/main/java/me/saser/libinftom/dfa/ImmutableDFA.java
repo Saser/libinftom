@@ -28,7 +28,7 @@ public class ImmutableDFA implements DFA {
         // Disallow empty states in set of states.
         for (String state : states) {
             if (state.equals("")) {
-                throw new IllegalArgumentException("Having empty state in set of states is disallowed");
+                throw new IllegalArgumentException("Having empty state disallowed");
             }
         }
         this.states = ImmutableSet.copyOf(states);
