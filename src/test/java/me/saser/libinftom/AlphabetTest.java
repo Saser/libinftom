@@ -66,6 +66,7 @@ public class AlphabetTest {
         assertTrue("An IllegalArgumentException should have been thrown", thrown);
         assertTrue("The exception should contain the string \"empty symbol\"", message.contains("empty symbol"));
 
+        thrown = false;
         try {
             new StringAlphabet("a,b,c,e,");
         } catch (IllegalArgumentException e) {
@@ -76,6 +77,7 @@ public class AlphabetTest {
         assertTrue("An IllegalArgumentException should have been thrown", thrown);
         assertTrue("The exception should contain the string \"empty symbol\"", message.contains("empty symbol"));
 
+        thrown = false;
         try {
             new StringAlphabet(",a,b,c,e");
         } catch (IllegalArgumentException e) {
