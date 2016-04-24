@@ -49,6 +49,31 @@ public class DFATest {
         // q2
         assertEquals("delta(q2, 0) should be q1", "q1", dfa.nextState("q2", "0"));
         assertEquals("delta(q2, 1) should be q2", "q2", dfa.nextState("q2", "1"));
+
+        // Dead state (aka null)
+        assertNull("delta(null, 0) should be null", dfa.nextState(null, "0"));
+        assertNull("delta(null, 1) should be null", dfa.nextState(null, "1"));
+    }
+
+    @Test
+    public void testInvalidSymbolInTransition() throws Exception {
+        // Invalid non-null symbol
+        try {
+            dfa.nextState("q0", "2");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"invalid symbol\"", e.getMessage().contains("invalid symbol"));
+        }
+
+        // Null symbol
+        try {
+            dfa.nextState("q0", null);
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"null is an invalid symbol\"", e.getMessage().contains("null is an invalid symbol"));
+        }
     }
 
     @Test
