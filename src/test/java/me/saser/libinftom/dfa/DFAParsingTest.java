@@ -65,6 +65,17 @@ public class DFAParsingTest {
         }
     }
 
+    @Test
+    public void invalidInitialState() throws Exception {
+        try {
+            this.parseJSONFile("dfa/invalid/invalid_initial_state.json");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"invalid initial state\"", e.getMessage().contains("invalid initial state"));
+        }
+    }
+
     private DFA parseJSONFile(String fileName) throws Exception {
         String filePath = getClass().getClassLoader().getResource(fileName).getFile();
         File jsonFile = new File(filePath);
