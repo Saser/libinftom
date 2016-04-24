@@ -11,6 +11,17 @@ import static org.junit.Assert.*;
 public class DFAParsingTest {
 
     @Test
+    public void emptyStringInStates() throws Exception {
+        try {
+            this.parseJSONFile("dfa/invalid/empty_string_in_states.json");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"empty state disallowed\"", e.getMessage().contains("empty state disallowed"));
+        }
+    }
+
+    @Test
     public void oneMissingSymbolInDelta() throws Exception {
         try {
             this.parseJSONFile("dfa/invalid/one_missing_symbol_in_delta_q0.json");
