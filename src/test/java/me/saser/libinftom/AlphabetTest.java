@@ -63,7 +63,7 @@ public class AlphabetTest {
     }
 
     @Test
-    public void disallowEmptySymbols() throws Exception {
+    public void disallowEmptySymbolsCommaString() throws Exception {
         try {
             new StringAlphabet("a,b,c,,e");
 
@@ -82,6 +82,33 @@ public class AlphabetTest {
 
         try {
             new StringAlphabet(",a,b,c,e");
+
+            fail("An IllegalArgumentException should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("The exception should contain the string \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
+    }
+
+    @Test
+    public void disallowEmptySymbolsIterable() throws Exception {
+        try {
+            new StringAlphabet(ImmutableSet.of("a", "b", "c", "", "e"));
+
+            fail("An IllegalArgumentException should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("The exception should contain the string \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
+
+        try {
+            new StringAlphabet(ImmutableSet.of("a", "b", "c", "e", ""));
+
+            fail("An IllegalArgumentException should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("The exception should contain the string \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
+
+        try {
+            new StringAlphabet(ImmutableSet.of("", "a", "b", "c", "e"));
 
             fail("An IllegalArgumentException should have been thrown");
         } catch (IllegalArgumentException e) {
