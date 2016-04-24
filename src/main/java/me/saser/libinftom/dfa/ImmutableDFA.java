@@ -168,8 +168,19 @@ public class ImmutableDFA implements DFA {
 
     @Override
     public String nextState(String state, String symbol) {
+        // Special case for when trying to transition from null state, since that is considered the dead state.
+        // Any transition from the dead state ends up in the dead state itself, so we return null.
+        if (state == null) {
+            return null;
+        }
+
+        // Special case for null symbol.
+        if (symbol == null) {
+            throw new IllegalArgumentException("Cannot transition, null is an invalid symbol");
+        }
+
         if (this.states.contains(state) == false) {
-            throw new IllegalArgumentException("Trying to transition from invalid state");
+            throw new IllegalArgumentException("Trying to transition from invalid starting state");
         }
 
         if (this.alphabet.isValidSymbol(symbol) == false) {

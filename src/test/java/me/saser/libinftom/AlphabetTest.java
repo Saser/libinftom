@@ -1,5 +1,6 @@
 package me.saser.libinftom;
 
+import com.google.common.collect.ImmutableSet;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -84,5 +85,16 @@ public class AlphabetTest {
 
         assertTrue("An IllegalArgumentException should have been thrown", thrown);
         assertTrue("The exception should contain the string \"empty symbol\"", message.contains("empty symbol"));
+    }
+
+    @Test
+    public void testEquals() throws Exception {
+        // Create an alphabet from comma-separated list of symbols.
+        Alphabet a1 = new StringAlphabet("a,b,c,d,e");
+        // Create an alphabet from the same set of symbols, using an ImmutableSet.
+        Alphabet a2 = new StringAlphabet(ImmutableSet.of("b", "e", "a", "d", "c"));
+
+        assertTrue("The two alphabets should be equal", a1.equals(a2));
+        assertTrue("The two alphabets should be equal", a2.equals(a1));
     }
 }
