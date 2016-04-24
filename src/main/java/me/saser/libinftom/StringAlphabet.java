@@ -17,7 +17,18 @@ public class StringAlphabet implements Alphabet {
      * @throws IllegalArgumentException if any of the symbols is the empty string
      */
     public StringAlphabet(String symbols) {
-        this(ImmutableList.copyOf(symbols.split(",")));
+        if (symbols.equals("")) {
+            throw new IllegalArgumentException("Having an empty alphabet is disallowed");
+        }
+
+        // Throw exception on leading or trailing commas => empty symbols.
+        if (symbols.charAt(0) == ',' ||
+            symbols.charAt(symbols.length() - 1) == ',' ||
+            noEmptySymbols(ImmutableList.copyOf(symbols.split(","))) == false) {
+            throw new IllegalArgumentException("Having an empty symbol is disallowed");
+        }
+
+        this.symbolSet = ImmutableSet.copyOf(symbols.split(","));
     }
 
     /**
@@ -28,13 +39,21 @@ public class StringAlphabet implements Alphabet {
      * @throws IllegalArgumentException if any of the symbols is the empty string
      */
     public StringAlphabet(Iterable<String> symbols) {
-        for (String sym : symbols) {
-            if (sym.equals("")) {
-                throw new IllegalArgumentException("Having an empty symbol is disallowed");
-            }
+        if (noEmptySymbols(symbols) == false) {
+            throw new IllegalArgumentException("Having an empty symbol is disallowed");
         }
 
         this.symbolSet = ImmutableSet.copyOf(symbols);
+    }
+
+    private boolean noEmptySymbols(Iterable<String> symbols) {
+        for (String sym : symbols) {
+            if (sym.equals("")) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override

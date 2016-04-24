@@ -52,39 +52,68 @@ public class AlphabetTest {
     }
 
     @Test
-    public void disallowEmptySymbols() throws Exception {
-        boolean thrown = false;
-        String message = "";
+    public void disallowEmptyAlphabet() throws Exception {
+        try {
+            new StringAlphabet("");
 
+            fail("An IllegalArgumentException should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"empty alphabet\"", e.getMessage().contains("empty alphabet"));
+        }
+    }
+
+    @Test
+    public void disallowEmptySymbolsCommaString() throws Exception {
         try {
             new StringAlphabet("a,b,c,,e");
-        } catch (IllegalArgumentException e) {
-            thrown = true;
-            message = e.getMessage();
-        }
 
-        assertTrue("An IllegalArgumentException should have been thrown", thrown);
-        assertTrue("The exception should contain the string \"empty symbol\"", message.contains("empty symbol"));
+            fail("An IllegalArgumentException should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("The exception should contain the string \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
 
         try {
             new StringAlphabet("a,b,c,e,");
-        } catch (IllegalArgumentException e) {
-            thrown = true;
-            message = e.getMessage();
-        }
 
-        assertTrue("An IllegalArgumentException should have been thrown", thrown);
-        assertTrue("The exception should contain the string \"empty symbol\"", message.contains("empty symbol"));
+            fail("An IllegalArgumentException should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("The exception should contain the string \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
 
         try {
             new StringAlphabet(",a,b,c,e");
+
+            fail("An IllegalArgumentException should have been thrown");
         } catch (IllegalArgumentException e) {
-            thrown = true;
-            message = e.getMessage();
+            assertTrue("The exception should contain the string \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
+    }
+
+    @Test
+    public void disallowEmptySymbolsIterable() throws Exception {
+        try {
+            new StringAlphabet(ImmutableSet.of("a", "b", "c", "", "e"));
+
+            fail("An IllegalArgumentException should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("The exception should contain the string \"empty symbol\"", e.getMessage().contains("empty symbol"));
         }
 
-        assertTrue("An IllegalArgumentException should have been thrown", thrown);
-        assertTrue("The exception should contain the string \"empty symbol\"", message.contains("empty symbol"));
+        try {
+            new StringAlphabet(ImmutableSet.of("a", "b", "c", "e", ""));
+
+            fail("An IllegalArgumentException should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("The exception should contain the string \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
+
+        try {
+            new StringAlphabet(ImmutableSet.of("", "a", "b", "c", "e"));
+
+            fail("An IllegalArgumentException should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("The exception should contain the string \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
     }
 
     @Test
@@ -93,6 +122,12 @@ public class AlphabetTest {
         Alphabet a1 = new StringAlphabet("a,b,c,d,e");
         // Create an alphabet from the same set of symbols, using an ImmutableSet.
         Alphabet a2 = new StringAlphabet(ImmutableSet.of("b", "e", "a", "d", "c"));
+
+        assertEquals("An alphabet should be equal to itself", a1, a1);
+        assertEquals("An alphabet should be equal to itself", a2, a2);
+
+        assertFalse("No alphabet is equal to null", a1.equals(null));
+        assertFalse("No alphabet is equal to null", a2.equals(null));
 
         assertTrue("The two alphabets should be equal", a1.equals(a2));
         assertTrue("The two alphabets should be equal", a2.equals(a1));
