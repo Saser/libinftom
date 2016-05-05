@@ -35,4 +35,10 @@ public interface DFARunner {
      * Resets the runner so that it behaves exactly like it was just created.
      */
     void reset();
+
+    /**
+     * Returns true if the runners current state is a final state.
+     * @return true if in final state; false otherwise
+     */
+    boolean isInFinalState();
 }
