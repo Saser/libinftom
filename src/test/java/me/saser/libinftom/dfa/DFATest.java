@@ -95,4 +95,26 @@ public class DFATest {
         assertEquals("The only final state should be \"q2\"", expected, dfa.getFinalStates());
     }
 
+    @Test
+    public void acceptsValidWord() throws Exception {
+        // The DFA should accept any word that begins with 0 and ends with 1.
+        // Define a few such words, and assert that all of them are accepted.
+        String[] words = {"0,1", "0,0,0,0,1,1,1,1", "0,1,0,1,0,1", "0,1,1,1"};
+
+        for (String word : words) {
+            assertTrue(String.format("\"%s\" should be accepted", word), dfa.accepts(word));
+        }
+    }
+
+    @Test
+    public void rejectsInvalidWord() throws Exception {
+        // The DFA should reject any word that does not begin with 0 and end with 1.
+        // Define a few such words, and assert that all of them are rejected.
+        String[] words = {"1,0", "0,1,0", "0,1,0,1,1,1,0", "0"};
+
+        for (String word : words) {
+            assertFalse(String.format("\"%s\" should be rejected", word), dfa.accepts(word));
+        }
+    }
+
 }
