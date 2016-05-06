@@ -98,8 +98,4 @@ public class DFATest {
         assertEquals("The only final state should be \"q2\"", expected, dfa.getFinalStates());
     }
 
-    private static File getJSONResource(String fileName) {
-        String filePath = DFATest.class.getClassLoader().getResource(fileName).getFile();
-        return new File(filePath);
-    }
 }
