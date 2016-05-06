@@ -75,6 +75,7 @@ public interface DFA {
      *
      * @param word a comma separated string of symbol
      * @return true if consuming the symbols in order leaves the DFA in a final state; false otherwise
+     * @throws IllegalArgumentException if the word contains invalid symbols
      */
     boolean accepts(String word);
 }
