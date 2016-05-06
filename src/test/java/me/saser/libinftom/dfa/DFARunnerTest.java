@@ -303,4 +303,15 @@ public class DFARunnerTest {
         }
     }
 
+    @Test
+    public void inFinalState() throws Exception {
+        DFARunner runner = dfa.runner();
+
+        // Put us in state q2, which is final.
+        runner.consume("0");
+        runner.consume("1");
+
+        assertTrue("We should now be in the final state q2", runner.isInFinalState());
+    }
+
 }
