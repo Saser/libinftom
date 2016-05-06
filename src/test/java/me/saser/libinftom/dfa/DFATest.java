@@ -95,4 +95,68 @@ public class DFATest {
         assertEquals("The only final state should be \"q2\"", expected, dfa.getFinalStates());
     }
 
+    @Test
+    public void acceptsValidWord() throws Exception {
+        // The DFA should accept any word that begins with 0 and ends with 1.
+        // Define a few such words, and assert that all of them are accepted.
+        String[] words = {"0,1", "0,0,0,0,1,1,1,1", "0,1,0,1,0,1", "0,1,1,1"};
+
+        for (String word : words) {
+            assertTrue(String.format("\"%s\" should be accepted", word), dfa.accepts(word));
+        }
+    }
+
+    @Test
+    public void rejectsInvalidWord() throws Exception {
+        // The DFA should reject any word that does not begin with 0 and end with 1.
+        // Define a few such words, and assert that all of them are rejected.
+        String[] words = {"1,0", "0,1,0", "0,1,0,1,1,1,0", "0"};
+
+        for (String word : words) {
+            assertFalse(String.format("\"%s\" should be rejected", word), dfa.accepts(word));
+        }
+    }
+
+    @Test
+    public void exceptionOnAcceptInvalidSymbol() throws Exception {
+        // A word containing a non-empty invalid symbol.
+        try {
+            dfa.accepts("0,1,2,1");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"invalid or empty symbol\"", e.getMessage().contains("invalid or empty symbol"));
+        }
+    }
+
+    @Test
+    public void exceptionOnAcceptEmptySymbol() throws Exception {
+        try {
+            // A word containing a empty (and therefore invalid) symbol in the middle.
+            dfa.accepts("0,1,,1");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"invalid or empty symbol\"", e.getMessage().contains("invalid or empty symbol"));
+        }
+
+        try {
+            // A word containing a empty (and therefore invalid) symbol in the beginning.
+            dfa.accepts(",0,1,1");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"invalid or empty symbol\"", e.getMessage().contains("invalid or empty symbol"));
+        }
+
+        try {
+            // A word containing a empty (and therefore invalid) symbol in the end.
+            dfa.accepts("0,1,1,");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"invalid or empty symbol\"", e.getMessage().contains("invalid or empty symbol"));
+        }
+    }
+
 }

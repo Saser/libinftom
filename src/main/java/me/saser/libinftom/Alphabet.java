@@ -17,7 +17,7 @@ public interface Alphabet {
      * @param symbol a String for a single symbol
      * @return true if the symbols is valid
      */
-    Boolean isValidSymbol(String symbol);
+    boolean isValidSymbol(String symbol);
 
     /**
      * Determines whether the given word is a word in this alphabet. The word is expected to be a <b>comma separated
@@ -26,5 +26,5 @@ public interface Alphabet {
      * @param word a comma separated list of symbols in this alphabet
      * @return true if all symbols are valid
      */
-    Boolean isValidWord(String word);
+    boolean isValidWord(String word);
 }

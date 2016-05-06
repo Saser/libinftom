@@ -68,4 +68,14 @@ public interface DFA {
      * @throws IllegalArgumentException if the state is invalid; if the symbol is invalid
      */
     String nextState(String state, String symbol);
+
+    /**
+     * Tells whether the given word is accepted by this DFA. The word should be given as a comma separated string of
+     * symbols in the alphabet this DFA is defined for.
+     *
+     * @param word a comma separated string of symbol
+     * @return true if consuming the symbols in order leaves the DFA in a final state; false otherwise
+     * @throws IllegalArgumentException if the word contains invalid symbols
+     */
+    boolean accepts(String word);
 }
