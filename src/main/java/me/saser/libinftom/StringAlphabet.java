@@ -74,6 +74,11 @@ public class StringAlphabet implements Alphabet {
             return true;
         }
 
+        // A word should not begin or end with an empty symbol, which means it should not begin or end with a comma.
+        if (word.charAt(0) == ',' || word.charAt(word.length() - 1) == ',') {
+            return false;
+        }
+
         return this.symbolSet.containsAll(ImmutableSet.copyOf(word.split(",")));
     }
 
