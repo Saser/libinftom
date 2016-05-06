@@ -125,7 +125,7 @@ public class DFATest {
 
             fail("An exception should have been thrown");
         } catch (IllegalArgumentException e) {
-            assertTrue("Exception message should contain \"invalid symbol\"", e.getMessage().contains("invalid symbol"));
+            assertTrue("Exception message should contain \"invalid or empty symbol\"", e.getMessage().contains("invalid or empty symbol"));
         }
     }
 
@@ -137,7 +137,7 @@ public class DFATest {
 
             fail("An exception should have been thrown");
         } catch (IllegalArgumentException e) {
-            assertTrue("Exception message should contain \"empty symbol\"", e.getMessage().contains("empty symbol"));
+            assertTrue("Exception message should contain \"invalid or empty symbol\"", e.getMessage().contains("invalid or empty symbol"));
         }
 
         try {
@@ -146,7 +146,7 @@ public class DFATest {
 
             fail("An exception should have been thrown");
         } catch (IllegalArgumentException e) {
-            assertTrue("Exception message should contain \"empty symbol\"", e.getMessage().contains("empty symbol"));
+            assertTrue("Exception message should contain \"invalid or empty symbol\"", e.getMessage().contains("invalid or empty symbol"));
         }
 
         try {
@@ -155,7 +155,7 @@ public class DFATest {
 
             fail("An exception should have been thrown");
         } catch (IllegalArgumentException e) {
-            assertTrue("Exception message should contain \"empty symbol\"", e.getMessage().contains("empty symbol"));
+            assertTrue("Exception message should contain \"invalid or empty symbol\"", e.getMessage().contains("invalid or empty symbol"));
         }
     }
 
