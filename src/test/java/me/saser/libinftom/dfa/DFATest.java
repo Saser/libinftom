@@ -117,4 +117,46 @@ public class DFATest {
         }
     }
 
+    @Test
+    public void exceptionOnAcceptInvalidSymbol() throws Exception {
+        // A word containing a non-empty invalid symbol.
+        try {
+            dfa.accepts("0,1,2,1");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"invalid symbol\"", e.getMessage().contains("invalid symbol"));
+        }
+    }
+
+    @Test
+    public void exceptionOnAcceptEmptySymbol() throws Exception {
+        try {
+            // A word containing a empty (and therefore invalid) symbol in the middle.
+            dfa.accepts("0,1,,1");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
+
+        try {
+            // A word containing a empty (and therefore invalid) symbol in the beginning.
+            dfa.accepts(",0,1,1");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
+
+        try {
+            // A word containing a empty (and therefore invalid) symbol in the end.
+            dfa.accepts("0,1,1,");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
+    }
+
 }
