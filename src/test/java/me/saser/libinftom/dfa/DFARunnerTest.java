@@ -203,5 +203,104 @@ public class DFARunnerTest {
         }
     }
 
+    @Test
+    public void exceptionOnImmediatelyPeekingInvalidSymbol() throws Exception {
+        DFARunner runner = dfa.runner();
+
+        try {
+            runner.peek("2");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"invalid symbol\"", e.getMessage().contains("invalid symbol"));
+        }
+    }
+
+    @Test
+    public void exceptionOnPeekingInvalidSymbol() throws Exception {
+        DFARunner runner = dfa.runner();
+
+        // Consume a few symbols to eventually put us in state q1.
+        runner.consume("0"); // q1
+        runner.consume("0"); // q1
+        runner.consume("1"); // q2
+        runner.consume("0"); // q1
+        runner.consume("1"); // q2
+        runner.consume("0"); // q1
+
+        try {
+            runner.peek("2");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"invalid symbol\"", e.getMessage().contains("invalid symbol"));
+        }
+    }
+
+    @Test
+    public void exceptionOnPeekingInvalidSymbolFromDeadState() throws Exception {
+        DFARunner runner = dfa.runner();
+
+        // Put us in the dead state.
+        runner.consume("1");
+
+        try {
+            runner.peek("2");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"invalid symbol\"", e.getMessage().contains("invalid symbol"));
+        }
+    }
+
+    @Test
+    public void exceptionOnImmediatelyPeekingEmptySymbol() throws Exception {
+        DFARunner runner = dfa.runner();
+
+        try {
+            runner.peek("");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
+    }
+
+    @Test
+    public void exceptionOnPeekingEmptySymbol() throws Exception {
+        DFARunner runner = dfa.runner();
+
+        // Consume a few symbols to eventually put us in state q1.
+        runner.consume("0"); // q1
+        runner.consume("0"); // q1
+        runner.consume("1"); // q2
+        runner.consume("0"); // q1
+        runner.consume("1"); // q2
+        runner.consume("0"); // q1
+
+        try {
+            runner.peek("");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
+    }
+
+    @Test
+    public void exceptionOnPeekingEmptySymbolFromDeadState() throws Exception {
+        DFARunner runner = dfa.runner();
+
+        // Put us in the dead state.
+        runner.consume("1");
+
+        try {
+            runner.peek("");
+
+            fail("An exception should have been thrown");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Exception message should contain \"empty symbol\"", e.getMessage().contains("empty symbol"));
+        }
+    }
 
 }
