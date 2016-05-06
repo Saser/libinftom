@@ -195,6 +195,20 @@ public class ImmutableDFA implements DFA {
         return this.delta.get(state).get(symbol);
     }
 
+    @Override
+    public boolean accepts(String word) {
+        if (this.alphabet.isValidWord(word) == false) {
+            throw new IllegalArgumentException("Word contains at least one invalid or empty symbol");
+        }
+
+        DFARunner runner = this.runner();
+        for (String symbol : word.split(",")) {
+            runner.consume(symbol);
+        }
+
+        return runner.isInFinalState();
+    }
+
     private static class DFAData {
 
         private Set<String> states;
