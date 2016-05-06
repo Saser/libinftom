@@ -163,7 +163,7 @@ public class ImmutableDFA implements DFA {
 
     @Override
     public DFARunner runner() {
-        return null;
+        return new SimpleDFARunner(this);
     }
 
     @Override
