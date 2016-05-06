@@ -30,4 +30,15 @@ public interface DFARunner {
      * @throws IllegalArgumentException if <code>symbol</code> is not a valid symbol in the language of this DFA
      */
     String consume(String symbol);
+
+    /**
+     * Resets the runner so that it behaves exactly like it was just created.
+     */
+    void reset();
+
+    /**
+     * Returns true if the runners current state is a final state.
+     * @return true if in final state; false otherwise
+     */
+    boolean isInFinalState();
 }

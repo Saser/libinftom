@@ -10,10 +10,12 @@ import static org.junit.Assert.*;
 
 public class DFAParsingTest {
 
+    private static final DFATestUtils utils = new DFATestUtils();
+
     @Test
     public void emptyStringInStates() throws Exception {
         try {
-            this.parseJSONFile("dfa/invalid/empty_string_in_states.json");
+            utils.parseJSONFile("dfa/invalid/empty_string_in_states.json");
 
             fail("An exception should have been thrown");
         } catch (IllegalArgumentException e) {
@@ -24,7 +26,7 @@ public class DFAParsingTest {
     @Test
     public void oneMissingSymbolInDelta() throws Exception {
         try {
-            this.parseJSONFile("dfa/invalid/one_missing_symbol_in_delta_q0.json");
+            utils.parseJSONFile("dfa/invalid/one_missing_symbol_in_delta_q0.json");
 
             fail("An exception should have been thrown");
         } catch (IllegalArgumentException e) {
@@ -35,7 +37,7 @@ public class DFAParsingTest {
     @Test
     public void oneExtraSymbolInDelta() throws Exception {
         try {
-            this.parseJSONFile("dfa/invalid/one_extra_symbol_in_delta_q0.json");
+            utils.parseJSONFile("dfa/invalid/one_extra_symbol_in_delta_q0.json");
 
             fail("An exception should have been thrown");
         } catch (IllegalArgumentException e) {
@@ -46,7 +48,7 @@ public class DFAParsingTest {
     @Test
     public void oneMissingStateInDelta() throws Exception {
         try {
-            this.parseJSONFile("dfa/invalid/one_missing_state_in_delta.json");
+            utils.parseJSONFile("dfa/invalid/one_missing_state_in_delta.json");
 
             fail("An exception should have been thrown");
         } catch (IllegalArgumentException e) {
@@ -57,7 +59,7 @@ public class DFAParsingTest {
     @Test
     public void oneExtraStateInDelta() throws Exception {
         try {
-            this.parseJSONFile("dfa/invalid/one_extra_state_in_delta.json");
+            utils.parseJSONFile("dfa/invalid/one_extra_state_in_delta.json");
 
             fail("An exception should have been thrown");
         } catch (IllegalArgumentException e) {
@@ -68,7 +70,7 @@ public class DFAParsingTest {
     @Test
     public void invalidTargetStateInTransition() throws Exception {
         try {
-            this.parseJSONFile("dfa/invalid/invalid_target_state_in_delta.json");
+            utils.parseJSONFile("dfa/invalid/invalid_target_state_in_delta.json");
 
             fail("An exception should have been thrown");
         } catch (IllegalArgumentException e) {
@@ -79,7 +81,7 @@ public class DFAParsingTest {
     @Test
     public void invalidInitialState() throws Exception {
         try {
-            this.parseJSONFile("dfa/invalid/invalid_initial_state.json");
+            utils.parseJSONFile("dfa/invalid/invalid_initial_state.json");
 
             fail("An exception should have been thrown");
         } catch (IllegalArgumentException e) {
@@ -90,19 +92,12 @@ public class DFAParsingTest {
     @Test
     public void invalidFinalState() throws Exception {
         try {
-            this.parseJSONFile("dfa/invalid/invalid_final_states.json");
+            utils.parseJSONFile("dfa/invalid/invalid_final_states.json");
 
             fail("An exception should have been thrown");
         } catch (IllegalArgumentException e) {
             assertTrue("Exception message should contain \"invalid final state\"", e.getMessage().contains("invalid final state"));
         }
-    }
-
-    private DFA parseJSONFile(String fileName) throws Exception {
-        String filePath = getClass().getClassLoader().getResource(fileName).getFile();
-        File jsonFile = new File(filePath);
-        String json = FileUtils.readFileToString(jsonFile, Charset.defaultCharset());
-        return ImmutableDFA.fromJSON(json);
     }
 
 }

@@ -163,28 +163,33 @@ public class ImmutableDFA implements DFA {
 
     @Override
     public DFARunner runner() {
-        return null;
+        return new SimpleDFARunner(this);
     }
 
     @Override
     public String nextState(String state, String symbol) {
+        // Special case for null symbol.
+        if (symbol == null) {
+            throw new IllegalArgumentException("Cannot transition, null is an invalid symbol");
+        }
+
+        // The empty symbol is invalid.
+        if (symbol.equals("")) {
+            throw new IllegalArgumentException("Cannot transition using the empty symbol");
+        }
+
+        if (this.alphabet.isValidSymbol(symbol) == false) {
+            throw new IllegalArgumentException("Trying to transition using an invalid symbol");
+        }
+
         // Special case for when trying to transition from null state, since that is considered the dead state.
         // Any transition from the dead state ends up in the dead state itself, so we return null.
         if (state == null) {
             return null;
         }
 
-        // Special case for null symbol.
-        if (symbol == null) {
-            throw new IllegalArgumentException("Cannot transition, null is an invalid symbol");
-        }
-
         if (this.states.contains(state) == false) {
             throw new IllegalArgumentException("Trying to transition from invalid starting state");
-        }
-
-        if (this.alphabet.isValidSymbol(symbol) == false) {
-            throw new IllegalArgumentException("Trying to transition using an invalid symbol");
         }
 
         return this.delta.get(state).get(symbol);
