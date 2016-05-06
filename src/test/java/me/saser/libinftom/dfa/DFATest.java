@@ -3,12 +3,9 @@ package me.saser.libinftom.dfa;
 import com.google.common.collect.ImmutableSet;
 import me.saser.libinftom.Alphabet;
 import me.saser.libinftom.StringAlphabet;
-import org.apache.commons.io.FileUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.File;
-import java.nio.charset.Charset;
 import java.util.Set;
 
 import static org.junit.Assert.*;

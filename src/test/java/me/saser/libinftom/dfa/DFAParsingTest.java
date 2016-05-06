@@ -1,12 +1,9 @@
 package me.saser.libinftom.dfa;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
-import java.io.File;
-import java.nio.charset.Charset;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class DFAParsingTest {
 
