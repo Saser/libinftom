@@ -62,12 +62,12 @@ public class StringAlphabet implements Alphabet {
     }
 
     @Override
-    public Boolean isValidSymbol(String symbol) {
+    public boolean isValidSymbol(String symbol) {
         return this.symbolSet.contains(symbol);
     }
 
     @Override
-    public Boolean isValidWord(String word) {
+    public boolean isValidWord(String word) {
         // We define that the empty word is valid, since that is how the set of words of an alphabet is usually
         // defined.
         if (word.equals("")) {
