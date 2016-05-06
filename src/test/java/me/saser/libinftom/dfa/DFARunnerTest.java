@@ -36,6 +36,30 @@ public class DFARunnerTest {
     }
 
     @Test
+    public void testPeek() throws Exception {
+        DFARunner runner = dfa.runner();
+
+        assertEquals("Peeking \"0\" should return q1", "q1", runner.peek("0"));
+        assertEquals("State should still be q0 after peeking", "q0", runner.getState());
+
+        assertNull("Peeking \"1\" should return null", runner.peek("1"));
+        assertEquals("State should still be q0 after peeking", "q0", runner.getState());
+
+        // Consume a few symbols to eventually end up in q2.
+        runner.consume("0");
+        runner.consume("1");
+        runner.consume("1");
+        runner.consume("0");
+        runner.consume("1");
+
+        assertEquals("Peeking \"0\" should return q1", "q1", runner.peek("0"));
+        assertEquals("State should still be q2 after peeking", "q2", runner.getState());
+
+        assertEquals("Peeking \"1\" should return q2", "q2", runner.peek("1"));
+        assertEquals("State should still be q2 after peeking", "q2", runner.getState());
+    }
+
+    @Test
     public void testConsume() throws Exception {
         DFARunner runner = dfa.runner();
 
@@ -178,5 +202,6 @@ public class DFARunnerTest {
             assertTrue("Exception message should contain \"empty symbol\"", e.getMessage().contains("empty symbol"));
         }
     }
+
 
 }
