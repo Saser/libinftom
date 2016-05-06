@@ -1,4 +1,4 @@
-# `libinftom`
+# `libinftom` [![Coverage Status](https://coveralls.io/repos/github/Saser/libinftom/badge.svg?branch=master)](https://coveralls.io/github/Saser/libinftom?branch=master)
 
 This is a small project accompanying the course TMV027 Finite Automata Theory and Formal Languages, given at Chalmers University of Technology in Spring 2016.
 
