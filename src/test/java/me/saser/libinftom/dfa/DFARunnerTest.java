@@ -16,6 +16,13 @@ public class DFARunnerTest {
     }
 
     @Test
+    public void testCreate() throws Exception {
+        DFARunner runner = dfa.runner();
+
+        assertEquals("Should be in initial state (q0) at creation", dfa.getInitialState(), runner.getState());
+    }
+
+    @Test
     public void testReset() throws Exception {
         DFARunner runner = dfa.runner();
 
