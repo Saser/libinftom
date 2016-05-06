@@ -49,6 +49,10 @@ public class AlphabetTest {
         assertFalse("\"a,q\", a word with one valid and one invalid symbol, is an invalid word", alphabet.isValidWord("a,q"));
         assertFalse("\"a,cde,hello world,q\", a word with a few valid symbols and one invalid symbol, is an invalid word", alphabet.isValidWord("a,cde,hello world,q"));
         assertFalse("\"q,q,q,derp,sc2\", a word with a few invalid symbols, is an invalid word", alphabet.isValidWord("q,q,q,derp,sc2"));
+
+        assertFalse("\"a,b,,a\" is an invalid word since it contains an empty symbol", alphabet.isValidWord("a,b,,a"));
+        assertFalse("\",a,b,a\" is an invalid word since it starts with an empty symbol", alphabet.isValidWord(",a,b,a"));
+        assertFalse("\"a,b,a,\" is an invalid word since it ends with an empty symbol", alphabet.isValidWord("a,b,a,"));
     }
 
     @Test
