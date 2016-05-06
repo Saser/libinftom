@@ -131,5 +131,8 @@ public class AlphabetTest {
 
         assertTrue("The two alphabets should be equal", a1.equals(a2));
         assertTrue("The two alphabets should be equal", a2.equals(a1));
+
+        assertFalse("Alphabets are not equal to any object of any other type", a1.equals("hello"));
+        assertFalse("Alphabets are not equal to any object of any other type", a2.equals("hello"));
     }
 }
